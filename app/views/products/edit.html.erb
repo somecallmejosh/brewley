@@ -1,0 +1,8 @@
+<div class="<%= page_container %>">
+  <h1 class="text-4xl font-bold"><span class="text-gray-600">Editing:</span> <%= @product.name %></h1>
+
+  <%= render "form", product: @product %>
+
+  <%= link_to "Show this product", @product, class: button_class(theme: 'show', variant: 'small') %>
+  <%= link_to "Back to products", products_path, class: button_class(theme: 'back', variant: 'small') %>
+</div>

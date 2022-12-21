@@ -1,0 +1,18 @@
+<div class="<%= page_container %>">
+  <% if notice.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold"><%= @product.name %> Variants</h1>
+    <%= link_to "New #{@product.name} variant", new_product_product_variant_path, class: button_class(theme: 'create', variant: 'small') %>
+  </div>
+
+  <div id="product_variants" class="space-y-2">
+    <%= render @product_variants %>
+  </div>
+
+  <div>
+    <%= link_to "Back to #{@product.name}", product_path(@product), class: button_class(theme: 'back', variant: 'small') %>
+  </div>
+</div>

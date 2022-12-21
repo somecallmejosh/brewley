@@ -1,0 +1,8 @@
+<div class="<%= page_wrapper %>">
+  <h1 class="text-4xl font-bold">Editing category</h1>
+
+  <%= render "form", category: @category %>
+
+  <%= link_to "Show this category", @category, class: button_class(theme: 'show', variant: 'small') %>
+  <%= link_to "Back to categories", categories_path, class: button_class(theme: 'back', variant: 'small') %>
+</div>

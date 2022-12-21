@@ -1,0 +1,8 @@
+<div class="<%= page_container %>">
+  <h1 class="text-4xl font-bold">Editing event</h1>
+
+  <%= render "form", event: @event %>
+
+  <%= link_to "Show this event", @event, class: button_class(theme: 'show', variant: 'small') %>
+  <%= link_to "Back to events", events_path, class: button_class(theme: 'back', variant: 'small') %>
+</div>

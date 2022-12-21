@@ -1,0 +1,33 @@
+<% name_attribute = attributes.find{ |a| a.name == "name" } %>
+<% has_name = !!name_attribute %>
+<div class="<%%= page_wrapper_class() %>">
+  <div class="<%%= header_wrapper_class() %>">
+    <h1 class="text-3xl font-semibold">
+      <%= plural_table_name.capitalize %>
+    </h1>
+    <div class="flex justify-end">
+      <%%= link_to new_<%= singular_table_name %>_path, class: button_class(variant: "icon"), title: 'Create new record' do %>
+      <%%= inline_svg 'solid/folder-plus', aria_label: 'Add New Record', class: 'h-4 w-4' %>
+      <%% end %>
+    </div>
+  </div>
+  <ul class="p-4 bg-white divide-y divide-gray-200 shadow-lg lg:p-12 lg:rounded-2xl">
+    <%% @<%= plural_table_name%>.each do |<%= singular_table_name %>| %>
+    <%%= content_tag :div, id: dom_id(<%= singular_table_name %>), class: dom_class(<%= singular_table_name %>) do %>
+    <li class="justify-between py-3 space-y-2 bg-white lg:flex lg:items-center lg:space-x-4 lg:space-y-0">
+      <% if has_name %>
+        <%%= link_to <%= singular_table_name %>"name, <%= singular_table_name %>, class: link_class() %>
+      <% end %>
+      <div class="flex items-center space-x-2">
+        <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: button_class(variant: "icon"), title: 'Edit record' do %>
+        <%%= inline_svg 'solid/pencil', aria_label: 'Edit', class: 'h-4 w-4' %>
+        <%% end %>
+        <%%= button_to <%= singular_table_name %>, method: :delete, class: button_class(variant: "icon"), data: { turbo_confirm: 'Are you sure?' }, title: 'Destroy record' do %>
+        <%%= inline_svg 'solid/trash', aria_label: 'Delete', class: 'h-4 w-4' %>
+        <%% end %>
+      </div>
+    </li>
+    <%% end %>
+    <%% end %>
+  </ul>
+</div>

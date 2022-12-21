@@ -1,0 +1,9 @@
+<div class="<%= page_container %>">
+  <h1 class="text-4xl font-bold">New <%= @product.name %> variant</h1>
+
+  <%= render "form", product_variant: @product_variant %>
+  <div>
+    <%= link_to "Back to #{@product.name}", product_path(@product), class: button_class(theme: 'back', variant: 'small') %>
+    <%= link_to "Back to #{@product.name} Variants", product_product_variants_path, class: button_class(theme: 'back', variant: 'small') %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="<%= page_container %>">
+  <% if notice.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-bold">Events</h1>
+    <%= link_to 'New event', new_event_path, class: button_class(theme: 'create', variant: 'small') %>
+  </div>
+
+  <div id="events" class="grid min-w-full gap-6">
+    <% @events.each do |event| %>
+      <div class="relative overflow-hidden bg-white shadow lg:flex rounded-2xl">
+        <div class="flex flex-col items-center justify-center p-4 text-center text-white bg-gray-900 basis-56">
+          <p class="text-2xl font-semibold tracking-tight">
+            <%= event.start_date.strftime("%b %d, %Y") %>
+          </p>
+          <p>
+            <%= event.start_date.strftime("%l:%M%P") %>
+            <%= event.end_date.strftime("- %l:%M%P") %>
+          </p>
+        </div>
+        <div class="p-8 prose">
+          <h2><%= event.name %></h2>
+          <p><%= event.description %></p>
+          <p><%= link_to 'Event details', event_url(event) %></p>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

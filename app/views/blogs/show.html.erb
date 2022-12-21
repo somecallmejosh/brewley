@@ -1,0 +1,15 @@
+<div class="<%= page_container %>">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @blog %>
+
+    <%= link_to 'Edit this blog', edit_blog_path(@blog), class: button_class(theme: 'primary', variant: 'small') %>
+    <%= link_to 'Back to blogs', blogs_path, class: button_class(theme: 'dark', variant: 'small') %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this blog', blog_path(@blog), method: :delete, class: button_class(theme: 'danger', variant: 'small') %>
+    </div>
+  </div>
+</div>

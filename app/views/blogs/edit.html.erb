@@ -1,0 +1,8 @@
+<div class="<%= page_container %>">
+  <h1 class="text-4xl font-bold">Editing blog</h1>
+
+  <%= render "form", blog: @blog %>
+
+  <%= link_to "Show this blog", @blog, class: button_class(theme: 'primary', variant: 'small')%>
+  <%= link_to "Back to blogs", blogs_path, class: button_class(theme: 'dark', variant: 'small') %>
+</div>

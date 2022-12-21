@@ -1,0 +1,17 @@
+<div class="<%= page_container %>">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @container %>
+
+    <div>
+      <%= link_to 'Edit this container', edit_container_path(@container), class: button_class(theme: 'update', variant: 'small') %>
+      <%= link_to 'Back to containers', containers_path, class: button_class(theme: 'back', variant: 'small') %>
+      <div class="inline-block ml-2">
+        <%= button_to 'Destroy this container', container_path(@container), method: :delete, class: button_class(theme: 'destroy', variant: 'small') %>
+      </div>
+    </div>
+  </div>
+</div>

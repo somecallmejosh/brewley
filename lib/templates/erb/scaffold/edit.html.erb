@@ -1,0 +1,13 @@
+<div class="<%%= page_wrapper_class() %>">
+  <div class="<%%= form_wrapper_class() %>">
+    <div class="<%%= header_wrapper_class() %>">
+      <h1 class="text-3xl font-semibold">Edit <%%= @<%= singular_table_name %>.name %></h1>
+      <%% if @<%= model_resource_name %>.persisted? %>
+      <%%= button_to @<%= model_resource_name %>, method: :delete, class: button_class(variant: "icon"), data: { turbo_confirm: 'Are you sure?' }, title: 'Destroy' do %>
+      <%%= inline_svg 'solid/trash', aria_labe: 'Destroy', class: 'h-4 w-4' %>
+      <%% end %>
+      <%% end %>
+    </div>
+    <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
+  </div>
+</div>

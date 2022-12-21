@@ -1,0 +1,51 @@
+<%%= form_with(model: <%= model_resource_name %>, class: 'space-y-6') do |form| %>
+<%% if <%= singular_table_name %>.errors.any? %>
+<div id="error_explanation" class="p-6 text-red-800 rounded bg-red-50">
+  <h2 class="mb-3 text-lg font-semibold"><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+  <ul class="leading-relaxed list-disc">
+    <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+    <li><%%= message %></li>
+    <%% end %>
+  </ul>
+</div>
+<%% end %>
+
+<div class="space-y-6">
+<% attributes.each do |attribute| -%>
+  <div>
+    <% if attribute.password_digest? -%>
+      <%%= form.label :password, class: label_class %>
+      <%%= form.password_field :password, class: input_class %>
+    </div>
+
+    <%%= form.label :password_confirmation, class: label_class %>
+    <%%= form.password_field :password_confirmation, class: input_class %>
+  <% else -%>
+    <% if attribute.field_type == :check_box -%>
+      <div class="flex items-center space-x-1.5">
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: checkbox_class %>
+        <%%= form.label :<%= attribute.column_name %>, class: 'font-semibold' %>
+      </div>
+    <% elsif attribute.field_type == :text_area -%>
+      <%%= form.label :<%= attribute.column_name %>, class: label_class %>
+      <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: text_area_class %>
+    <% else -%>
+      <%%= form.label :<%= attribute.column_name %>, class: label_class %>
+      <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: input_class %>
+    <% end -%>
+  <% end -%>
+</div>
+<% end -%>
+</div>
+
+<div class="flex items-center space-x-4">
+  <%%= form.submit class: button_class(theme: 'primary', variant: 'small') %>
+
+  <%% if <%= model_resource_name %>.persisted? %>
+  <%%= link_to "Cancel", <%= model_resource_name %>, class: link_class() %>
+  <%% else %>
+  <%%= link_to "Cancel", <%= index_helper %>_path, class:  link_class() %>
+  <%% end %>
+  <%% end %>
+</div>

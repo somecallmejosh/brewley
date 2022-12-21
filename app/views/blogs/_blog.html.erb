@@ -1,0 +1,52 @@
+<div id="<%= dom_id blog %>">
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Name/Title:</strong>
+    <%= blog.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Snippet:</strong>
+    <%= blog.snippet %>
+  </p>
+
+  <div class="my-5">
+    <strong class="block mb-1 font-medium">Content:</strong>
+    <%= blog.content %>
+  </div>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Slug:</strong>
+    <%= blog.slug %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Description:</strong>
+    <%= blog.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Canonical url:</strong>
+    <%= blog.canonical_url %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Image:</strong>
+    <%= blog.image %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Category:</strong>
+    <%= blog.category %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Tags:</strong>
+    <%= blog.tags %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this blog", blog, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this blog', edit_blog_path(blog), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

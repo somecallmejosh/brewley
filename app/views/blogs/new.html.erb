@@ -1,0 +1,7 @@
+<div class="<%= page_container %>">
+  <h1 class="text-4xl font-bold">New blog</h1>
+
+  <%= render "form", blog: @blog %>
+
+  <%= link_to 'Back to blogs', blogs_path, class: button_class(theme: 'dark', variant: 'small') %>
+</div>

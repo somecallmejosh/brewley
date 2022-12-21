@@ -1,0 +1,57 @@
+<%= form_with(model: blog, class: form_wrapper) do |form| %>
+  <% if blog.errors.any? %>
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+      <ul>
+        <% blog.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :snippet %>
+    <%= form.text_field :snippet %>
+  </div>
+
+  <div>
+    <%= form.label :content %>
+    <%= form.rich_text_area :content, rows: 4 %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :canonical_url %>
+    <%= form.text_field :canonical_url %>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div>
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :tags %>
+    <%= form.text_field :tags %>
+  </div>
+
+  <div>
+    <%= form.submit class: button_class(theme: 'primary', variant: 'small') %>
+  </div>
+<% end %>

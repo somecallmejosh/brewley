@@ -1,0 +1,28 @@
+
+  <div id="<%= dom_id product %>" class="grid gap-6 lg:grid-cols-5">
+    <div class="order-1 space-y-4 lg:col-span-2 lg:order-0">
+      <div class="relative shadow-inner">
+        <img src="<%= product.product_image %>" alt="Product in bottle" loading="lazy" class="shadow-inner rounded-2xl">
+      </div>
+      <% if product.category.image.present? %>
+        <div class="flex justify-center py-8 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-50 to-zinc-200 rounded-2xl">
+          <img src="<%= product.category.image %>" alt="Category product in glass" loading="lazy" class="rounded-2xl">
+        </div>
+      <% end %>
+    </div>
+    <div class="space-y-6 lg:col-span-3 order-0 lg:order-1">
+      <img src="<%= product.brand_image %>" alt="Product in glass" loading="lazy" class="w-full rounded-2xl">
+      <div class="py-6 prose">
+          <p><%= product.category.description %></p>
+          <% if product.category.products_count > 1 %>
+            <p><%= link_to "See all of our #{product.category.name} beers", category_url(product.category) %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+  <div>
+    <% if action_name != "show" %>
+      <%= link_to "Show this product", product, class: button_class(theme: 'show', variant: 'small') %>
+      <%= link_to 'Edit this product', edit_product_path(product), class: button_class(theme: 'update', variant: 'small') %>
+    <% end %>
+  </div>

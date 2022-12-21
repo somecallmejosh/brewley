@@ -1,0 +1,19 @@
+<div id="<%= dom_id category %>" class="relative overflow-hidden bg-white rounded-2xl">
+  <div class="flex items-center justify-center pt-6 pb-2 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-200">
+    <img src="<%= category.image %>" class="w-full">
+  </div>
+  <div class="p-4">
+    <p class="flex items-center space-x-1 font-medium">
+      <span>
+        <%= category.name %></span>
+        <span class="px-1 text-sm font-semibold text-white bg-gray-800 rounded">
+          <%= category.products_count %>
+        </span>
+    </p>
+  </div>
+  <div class="absolute inset-0">
+    <%= link_to category_path(category), class: 'absolute inset-0 cursor-pointer', aria: { label: "View category" } do %>
+      <span class="sr-only">View category</span>
+    <% end %>
+  </div>
+</div>
