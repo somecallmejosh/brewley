@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
+  before_action :set_category
+  before_action :set_categories, only: %i[index show]
   before_action :set_product, only: %i[show edit update destroy]
-  before_action :set_categories
 
   # GET /products or /products.json
   def index
-    @products = Product.all.order(:name)
+    @products = @category.products.all.order(:name)
   end
 
   # GET /products/1 or /products/1.json
@@ -14,7 +15,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = @category.products.new
   end
 
   # GET /products/1/edit
@@ -27,7 +28,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: 'Product was successfully created.' }
+        format.html { redirect_to category_product_url(@category, @product), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +41,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: 'Product was successfully updated.' }
+        format.html { redirect_to category_product_url(@category, @product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,13 +63,18 @@ class ProductsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_categories
-    @categories = Category.all.order(:name)
+  def set_category
+    @category = Category.find_by(slug: params[:category_id])
   end
 
   def set_product
     @product = Product.find_by(slug: params[:id])
   end
+
+  def set_categories
+    @categories = Category.all.where('products_count > ?', 0)
+  end
+
 
   # Only allow a list of trusted parameters through.
   def product_params

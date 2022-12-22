@@ -5,7 +5,7 @@
 
   <div class="flex items-center justify-between">
     <h1 class="text-4xl font-bold"><%= @product.name %> Variants</h1>
-    <%= link_to "New #{@product.name} variant", new_product_product_variant_path, class: button_class(theme: 'create', variant: 'small') %>
+    <%= link_to "New #{@product.name} variant", new_category_product_product_variant_path(@category, @product), class: button_class(theme: 'create', variant: 'small') %>
   </div>
 
   <div id="product_variants" class="space-y-2">
@@ -13,6 +13,6 @@
   </div>
 
   <div>
-    <%= link_to "Back to #{@product.name}", product_path(@product), class: button_class(theme: 'back', variant: 'small') %>
+    <%= link_to "Back to #{@product.name}", category_product_path(@category, @product), class: button_class(theme: 'back', variant: 'small') %>
   </div>
 </div>

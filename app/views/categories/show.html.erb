@@ -34,7 +34,7 @@
             <div class="p-4">
               <p class="font-medium"><%= product.name %></p>
             </div>
-            <a href="<%= product_url(product)%>" class="absolute inset-0 cursor-pointer" aria-label="View product"></a>
+            <a href="<%= category_product_url(@category, product)%>" class="absolute inset-0 cursor-pointer" aria-label="View product"></a>
           </div>
         <% end %>
       </div>

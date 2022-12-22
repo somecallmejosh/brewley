@@ -12,7 +12,7 @@
     </div>
     <div class="flex flex-col gap-10 mb-8 lg:flex-row lg:justify-between lg:items-center">
       <div class="space-y-4">
-        <%= link_to @product.category.name, category_path(@product.category), class: "bg-gray-900 text-white py-0.5 px-1.5 rounded text-xs tracking-widest font-semibold" %>
+        <%= link_to @product.category.name, category_products_path(@category, @product), class: "bg-gray-900 text-white py-0.5 px-1.5 rounded text-xs tracking-widest font-semibold" %>
         <h1 class="text-4xl font-black lg:text-7xl">
           <%= @product.name %>
         </h1>
@@ -38,10 +38,10 @@
         <% end %>
         <div class="space-y-2">
           <div>
-            <%= link_to "All #{@product.name} variants", product_product_variants_path(@product), class: button_class(theme: 'show', variant: 'x-small') %>
+            <%= link_to "All #{@product.name} variants", category_product_product_variants_path(@category, @product), class: button_class(theme: 'show', variant: 'x-small') %>
           </div>
           <div>
-            <%= link_to "Add #{@product.name} variant", new_product_product_variant_path(@product), class: button_class(theme: 'new', variant: 'x-small') %>
+            <%= link_to "Add #{@product.name} variant", new_category_product_product_variant_path(@category, @product), class: button_class(theme: 'new', variant: 'x-small') %>
           </div>
         </div>
       </div>
@@ -56,10 +56,10 @@
     <%= render @product %>
   </div>
   <div>
-    <%= link_to 'Edit this product', edit_product_path(@product), class: button_class(theme: 'update', variant: 'small') %>
-    <%= link_to 'Back to products', products_path, class: button_class(theme: 'back', variant: 'small') %>
+    <%= link_to 'Edit this product', edit_category_product_path(@category, @product), class: button_class(theme: 'update', variant: 'small') %>
+    <%= link_to 'Back to products', category_products_path(@category, @product), class: button_class(theme: 'back', variant: 'small') %>
     <div class="inline-block">
-      <%= button_to 'Destroy this product', product_path(@product), method: :delete, class: button_class(theme: 'destroy', variant: 'small') %>
+      <%= button_to 'Destroy this product', category_product_path(@category, @product), method: :delete, class: button_class(theme: 'destroy', variant: 'small') %>
     </div>
   </div>
 </div>

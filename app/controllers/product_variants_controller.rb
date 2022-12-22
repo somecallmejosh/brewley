@@ -1,5 +1,6 @@
 class ProductVariantsController < ApplicationController
-  before_action :get_product
+  before_action :set_product
+  before_action :set_category
   before_action :set_product_variant, only: %i[ show edit update destroy ]
   before_action :set_products
 
@@ -62,8 +63,12 @@ class ProductVariantsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
 
-  def get_product
+  def set_product
     @product = Product.where(slug: params[:product_id])[0]
+  end
+
+  def set_category
+    @category = Category.find_by(slug: params[:category_id])
   end
 
   def set_products

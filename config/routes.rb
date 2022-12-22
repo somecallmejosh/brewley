@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :containers
-  resources :categories
-  resources :products do
-    resources :product_variants
+  resources :categories do
+    resources :products do
+      resources :product_variants
+    end
   end
   resources :blogs
   resources :events
