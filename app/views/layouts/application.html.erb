@@ -24,10 +24,7 @@
             <%= link_to 'Home', root_path %>
           </li>
           <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'categories' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Beer Categories', categories_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'products' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Products', products_path %>
+            <%= link_to 'Products', categories_path %>
           </li>
           <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'events' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
             <%= link_to 'Events', events_path %>

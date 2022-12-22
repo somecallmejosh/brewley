@@ -3,7 +3,7 @@
 
   <%= render "form", product_variant: @product_variant %>
   <div>
-    <%= link_to "Back to #{@product.name}", product_path(@product), class: button_class(theme: 'back', variant: 'small') %>
-    <%= link_to "Back to #{@product.name} Variants", product_product_variants_path, class: button_class(theme: 'back', variant: 'small') %>
+    <%= link_to "Back to #{@product.name}", category_product_path(@category, @product), class: button_class(theme: 'back', variant: 'small') %>
+    <%= link_to "Back to #{@product.name} Variants", category_product_product_variants_path(@category, @product), class: button_class(theme: 'back', variant: 'small') %>
   </div>
 </div>

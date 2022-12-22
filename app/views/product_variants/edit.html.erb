@@ -3,11 +3,11 @@
   <%= render "form", product_variant: @product_variant %>
   <div class="flex">
     <div class="flex space-x-2">
-      <%= link_to "Show this #{@product.name} variant", product_product_variant_path(@product, @product_variant), class: button_class(theme: 'show', variant: 'small') %>
-      <%= link_to "Back to #{@product.name} variants", product_product_variants_path, class: button_class(theme: 'back', variant: 'small') %>
+      <%= link_to "Show this #{@product.name} variant", category_product_product_variant_path(@category, @product, @product_variant), class: button_class(theme: 'show', variant: 'small') %>
+      <%= link_to "Back to #{@product.name} variants", category_product_product_variants_path(@category, @product, @product_variant), class: button_class(theme: 'back', variant: 'small') %>
     </div>
     <div class="inline-block ml-auto">
-      <%= button_to "Destroy this #{@product.name} variant", product_product_variant_path(@product, @product_variant), method: :delete, class: button_class(theme: 'destroy', variant: 'small') %>
+      <%= button_to "Destroy this #{@product.name} variant", category_product_product_variant_path(@category, @product, @product_variant), method: :delete, class: button_class(theme: 'destroy', variant: 'small') %>
     </div>
   </div>
 </div>

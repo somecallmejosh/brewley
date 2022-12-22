@@ -3,9 +3,19 @@
     <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
   <% end %>
 
+  <nav aria-label="Category Nav" class="flex items-center space-x-2 divide-x">
+    <ul class="flex items-center divide-x divide-gray-300">
+      <li><%= link_to 'All Categories', categories_path, class: 'px-2 block' %>
+      <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.name, category_products_path(category), class: "px-2 block #{params[:category_id] == category.slug ? 'text-red-500' : ''}"  %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
   <div class="flex items-center justify-between mb-12">
-    <h1 class="text-4xl font-bold">Products</h1>
-    <%= link_to 'New product', new_product_path, class: button_class(theme: 'create', variant: 'small') %>
+    <h1 class="text-4xl font-bold"><%= @category.name %> Products</h1>
+    <%= link_to 'New product', new_category_product_path(@category), class: button_class(theme: 'create', variant: 'small') %>
   </div>
 
   <div id="products" class="grid grid-cols-2 gap-6 lg:gap-12 lg:grid-cols-3">
@@ -23,7 +33,7 @@
             <p class="font-semibold text-red-500">Only <%= (product.discontinued_on.to_date - Date.today.to_date).to_i %> days left!</p>
           <% end %>
         </div>
-        <a href="<%= product_url(product)%>" class="absolute inset-0 cursor-pointer" aria-label="View product"></a>
+        <a href="<%= category_product_url(@category, product)%>" class="absolute inset-0 cursor-pointer" aria-label="View product"></a>
       </div>
     <% end %>
   </div>

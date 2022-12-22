@@ -11,7 +11,9 @@
       <% end %>
     </div>
     <div class="space-y-6 lg:col-span-3 order-0 lg:order-1">
-      <img src="<%= product.brand_image %>" alt="Product in glass" loading="lazy" class="w-full rounded-2xl">
+      <% if product.brand_image.present? %>
+        <img src="<%= product.brand_image %>" alt="Product branding" loading="lazy" class="w-full rounded-2xl">
+      <% end %>
       <div class="py-6 prose">
           <p><%= product.category.description %></p>
           <% if product.category.products_count > 1 %>
