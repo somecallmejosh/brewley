@@ -22,7 +22,9 @@
     <% @products.each do |product| %>
       <div class="relative bg-white shadow cursor-pointer rounded-2xl">
         <div class="relative">
-          <img src="<%= product.product_image %>" alt="Product" loading="lazy" class="w-full rounded-t-2xl" width="328" height="326">
+          <div class="flex justify-center py-4 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-300 rounded-t-2xl">
+            <img src="<%= product.product_image %>" alt="Product" loading="lazy" class="h-48">
+          </div>
           <span class="absolute top-0 transform -translate-y-1/2 left-4 bg-gray-900 text-white py-0.5 px-1.5 rounded text-xs tracking-widest font-semibold">
             <%= product.category.name %>
           </span>

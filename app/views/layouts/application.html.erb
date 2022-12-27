@@ -12,34 +12,36 @@
   </head>
 
   <body class="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-100">
-    <header class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-20 px-4 text-white bg-gradient-to-b from-gray-600 to-gray-900">
-      <div>
-        <%= link_to root_path, class: 'font-bold' do %>
-          <%= inline_svg 'brewley', class: 'h-10 fill-white' %>
-        <% end %>
+    <header class="fixed top-0 left-0 z-50 w-full bg-white">
+      <div class="flex items-center justify-between w-full h-20 mx-auto max-w-[1440px] px-4">
+        <div>
+          <%= link_to root_path, class: 'font-bold' do %>
+            <%= inline_svg 'brewley', class: 'h-10 fill-zinc-800' %>
+          <% end %>
+        </div>
+        <nav aria-label="main site navigation" class="">
+          <ul class="flex space-x-4">
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'index' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'Home', root_path %>
+            </li>
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'categories' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'Products', categories_path %>
+            </li>
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'events' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'Events', events_path %>
+            </li>
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'blogs' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'Blog', blogs_path %>
+            </li>
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'about' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'About', about_path %>
+            </li>
+            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'contact' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+              <%= link_to 'Contact', contact_path %>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav aria-label="main site navigation" class="">
-        <ul class="flex space-x-4">
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= action_name == 'index' && controller_name == 'static_pages' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Home', root_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'categories' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Products', categories_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'events' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Events', events_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= controller_name == 'blogs' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Blog', blogs_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= action_name == 'about' && controller_name == 'static_pages' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'About', about_path %>
-          </li>
-          <li class="rounded px-1 hover:bg-white transition-colors duration-300 <%= action_name == 'contact' && controller_name == 'static_pages' ? 'bg-white text-black' : 'hover:bg-opacity-20'%>">
-            <%= link_to 'Contact', contact_path %>
-          </li>
-        </ul>
-      </nav>
     </header>
     <main class="flex-grow">
       <%= yield %>

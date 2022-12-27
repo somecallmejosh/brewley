@@ -1,14 +1,34 @@
 
   <div id="<%= dom_id product %>" class="grid gap-6 lg:grid-cols-5">
     <div class="order-1 space-y-4 lg:col-span-2 lg:order-0">
-      <div class="relative shadow-inner">
-        <img src="<%= product.product_image %>" alt="Product in bottle" loading="lazy" class="shadow-inner rounded-2xl">
-      </div>
       <% if product.category.image.present? %>
-        <div class="flex justify-center py-8 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-50 to-zinc-200 rounded-2xl">
+        <div class="flex justify-center py-8 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-300 rounded-2xl">
           <img src="<%= product.category.image %>" alt="Category product in glass" loading="lazy" class="rounded-2xl">
         </div>
       <% end %>
+      <div class="relative space-y-6">
+        <% if product.product_variants.present? %>
+          <h2 class="text-2xl font-semibold">Pricing</h2>
+          <ul class="space-y-4">
+            <% product.product_variants.each do |variant|%>
+              <li class="flex">
+                <span><%= variant.name %></span>
+                <span aria-hidden="true" role="presentation" class="flex-grow px-1 border-b border-dashed border-zinc-400"></span>
+                <span><%= number_to_currency(variant.price) %></span>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+        <div class="space-y-2">
+          <div>
+            <%= link_to "All #{product.name} variants", category_product_product_variants_path(@category, product), class: button_class(theme: 'show', variant: 'x-small') %>
+          </div>
+          <div>
+            <%= link_to "Add #{product.name} variant", new_category_product_product_variant_path(@category, product), class: button_class(theme: 'new', variant: 'x-small') %>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="space-y-6 lg:col-span-3 order-0 lg:order-1">
       <% if product.brand_image.present? %>
