@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="">
   <head>
-    <title>CraftBrewery</title>
+    <title><%= @title.present? ? "#{@title} | Brewery.org" : 'Brewery.org' %></title>
+    <meta name="description" content="<%= @meta_description.present? ? @meta_description : 'Fill this in later' %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,6 +10,7 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= yield :schema %>
   </head>
 
   <body class="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-100">
