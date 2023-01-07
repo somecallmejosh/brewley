@@ -1,3 +1,13 @@
+<% @title = "#{@product.name}, #{@product.category.name} Beer" %>
+<% @meta_description = @product.meta_description %>
+
+<% content_for :schema do %>
+  <script type="application/ld+json">
+    <%= @product.to_schema.to_json.html_safe %>
+  </script>
+<% end %>
+
+
 <% if @product.available_on.present? && @product.discontinued_on.present? %>
   <% if (@product.discontinued_on.to_date - Date.today.to_date).to_i < 10 %>
     <div role="alert" class="p-6 font-semibold text-center text-red-800 rounded bg-gray-50">

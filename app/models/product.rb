@@ -18,4 +18,15 @@ class Product < ApplicationRecord
   def to_param
     slug
   end
+
+  def to_schema
+    schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: name,
+      description: meta_description,
+      image: brand_image,
+    }
+    schema
+  end
 end
