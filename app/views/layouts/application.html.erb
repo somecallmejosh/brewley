@@ -7,38 +7,43 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= canonical_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= yield :schema %>
   </head>
 
-  <body class="flex flex-col min-h-screen pt-20 bg-gradient-to-b from-zinc-100 via-zinc-200 to-zinc-100">
+  <body class="flex flex-col min-h-screen pt-20 bg-tan-50">
     <header class="fixed top-0 left-0 z-50 w-full bg-white">
       <div class="flex items-center justify-between w-full h-20 mx-auto max-w-[1440px] px-4">
         <div>
           <%= link_to root_path, class: 'font-bold' do %>
-            <%= inline_svg 'brewley', class: 'h-10 fill-zinc-800' %>
+            <%= render(LogoComponent.new(payload: {
+              logo_styles: 'h-10 fill-tan-800',
+              tagline_present: false,
+              tagline_styles: '',
+              wrapper_styles: 'inline-flex'
+            })) %>
           <% end %>
         </div>
         <nav aria-label="main site navigation" class="">
-          <ul class="flex space-x-4">
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'index' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+          <ul class="flex space-x-4 font-bold text-tan-700">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_static_pages?('index') %>">
               <%= link_to 'Home', root_path %>
             </li>
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'categories' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_controllers?(['categories', 'products']) %>">
               <%= link_to 'Products', categories_path %>
             </li>
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'events' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_controllers?(['events']) %>">
               <%= link_to 'Events', events_path %>
             </li>
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= controller_name == 'blogs' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_controllers?(['blogs']) %>">
               <%= link_to 'Blog', blogs_path %>
             </li>
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'about' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_static_pages?('about') %>">
               <%= link_to 'About', about_path %>
             </li>
-            <li class="rounded px-1 hover:bg-zinc-100 transition-colors duration-300 <%= action_name == 'contact' && controller_name == 'static_pages' ? 'bg-zinc-100 text-black' : 'hover:bg-opacity-20'%>">
+            <li class="px-1 transition-colors duration-300 <%= active_nav_static_pages?('contact') %>">
               <%= link_to 'Contact', contact_path %>
             </li>
           </ul>

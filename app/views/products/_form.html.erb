@@ -1,6 +1,6 @@
 <%= form_with(model: [@category, product], class: form_wrapper) do |form| %>
   <% if product.errors.any? %>
-    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 bg-red-50">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>

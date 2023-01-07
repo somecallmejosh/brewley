@@ -74,3 +74,4 @@ end
 gem "tailwindcss-rails", "~> 2.0"
 gem 'rack-rewrite' # we use to remove trailing slashes
 gem 'canonical-rails' # Canonical Tag management
+gem 'view_component' # View Components

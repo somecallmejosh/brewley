@@ -1,6 +1,6 @@
 <%%= form_with(model: <%= model_resource_name %>, class: 'space-y-6') do |form| %>
 <%% if <%= singular_table_name %>.errors.any? %>
-<div id="error_explanation" class="p-6 text-red-800 rounded bg-red-50">
+<div id="error_explanation" class="p-6 text-red-800 bg-red-50">
   <h2 class="mb-3 text-lg font-semibold"><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
 
   <ul class="leading-relaxed list-disc">

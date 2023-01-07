@@ -1,6 +1,6 @@
 module WrapperStylesHelper
   def card_wrapper
-    'p-4 space-y-4 bg-white shadow-lg md:p-8 lg:p-12 rounded-2xl'
+    'p-4 space-y-4 bg-white shadow-lg md:p-8 lg:p-12'
   end
 
   def header_wrapper

@@ -1,19 +1,19 @@
-<div class="<%= page_wrapper %>">
+<div class="<%= page_container_wide %>">
   <% if notice.present? %>
-    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 bg-green-50" id="notice"><%= notice %></p>
   <% end %>
 
   <div class="flex justify-between">
     <div class="space-y-2 prose">
-      <h1>Beer Categories</h1>
-      <p>At our brewery, we pride ourselves on offering something for everyone. Whether you prefer a malty ale or a hoppy IPA, we have a beer that will satisfy your taste buds. We also offer seasonal and specialty beers, so be sure to check back often for the latest offerings.</p>
+      <h1 class="text-tan-800">Beer Categories</h1>
+      <p class="text-tan-700">At our brewery, we pride ourselves on offering something for everyone. Whether you prefer a malty ale or a hoppy IPA, we have a beer that will satisfy your taste buds. We also offer seasonal and specialty beers, so be sure to check back often for the latest offerings.</p>
     </div>
     <div>
       <%= link_to 'New category', new_category_path, class: button_class(theme: 'create', variant: 'small') %>
     </div>
   </div>
 
-  <div id="categories" class="grid min-w-full grid-cols-4 gap-6">
+  <div id="categories" class="grid min-w-full grid-cols-3 gap-6">
     <%= render @categories %>
   </div>
 </div>

@@ -1,41 +1,43 @@
 
   <div id="<%= dom_id product %>" class="grid gap-6 lg:grid-cols-5">
-    <div class="order-1 space-y-4 lg:col-span-2 lg:order-0">
-      <% if product.category.image.present? %>
-        <div class="flex justify-center py-8 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-300 rounded-2xl">
-          <img src="<%= product.category.image %>" alt="Category product in glass" loading="lazy" class="rounded-2xl">
+    <div class="order-1 lg:col-span-2 lg:order-0">
+      <div class="lg:sticky lg:top-24">
+        <% if product.category.image.present? %>
+        <div class="flex justify-center pt-12 bg-white">
+          <img src="<%= product.category.image %>" alt="Category product in glass" loading="lazy">
         </div>
       <% end %>
-      <div class="relative space-y-6">
+      <div class="relative p-8 space-y-6 bg-white">
         <% if product.product_variants.present? %>
-          <h2 class="text-2xl font-semibold">Pricing</h2>
-          <ul class="space-y-4">
+          <h2 class="text-2xl font-semibold text-tan-800">Pricing</h2>
+          <ul class="space-y-4 text-tan-700">
             <% product.product_variants.each do |variant|%>
               <li class="flex">
                 <span><%= variant.name %></span>
-                <span aria-hidden="true" role="presentation" class="flex-grow px-1 border-b border-dashed border-zinc-400"></span>
+                <span aria-hidden="true" role="presentation" class="flex-grow px-1 border-b border-dashed border-tan-500"></span>
                 <span><%= number_to_currency(variant.price) %></span>
               </li>
             <% end %>
           </ul>
         <% end %>
-        <div class="space-y-2">
+        <div class="flex justify-between space-x-2">
           <div>
             <%= link_to "All #{product.name} variants", category_product_product_variants_path(@category, product), class: button_class(theme: 'show', variant: 'x-small') %>
           </div>
           <div>
-            <%= link_to "Add #{product.name} variant", new_category_product_product_variant_path(@category, product), class: button_class(theme: 'new', variant: 'x-small') %>
+            <%= link_to "Add #{product.name} variant", new_category_product_product_variant_path(@category, product), class: button_class(theme: 'create', variant: 'x-small') %>
           </div>
         </div>
+      </div>
       </div>
 
     </div>
     <div class="space-y-6 lg:col-span-3 order-0 lg:order-1">
       <% if product.brand_image.present? %>
-        <img src="<%= product.brand_image %>" alt="Product branding" loading="lazy" class="w-full rounded-2xl">
+        <img src="<%= product.brand_image %>" alt="Product branding" loading="lazy" class="w-full">
       <% end %>
       <div class="py-6 prose">
-          <p><%= product.category.description %></p>
+          <p class="text-tan-700"><%= product.category.description %></p>
           <% if product.category.products_count > 1 %>
             <p><%= link_to "See all of our #{product.category.name} beers", category_url(product.category) %>
           <% end %>

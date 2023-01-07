@@ -1,42 +1,33 @@
-<div class="<%= page_container %>">
+<div class="<%= page_container_wide %>">
   <% if notice.present? %>
-    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 bg-green-50" id="notice"><%= notice %></p>
   <% end %>
 
   <nav aria-label="Category Nav" class="flex items-center space-x-2 divide-x">
-    <ul class="flex items-center divide-x divide-gray-300">
-      <li><%= link_to 'All Categories', categories_path, class: 'px-2 block' %>
+    <ul class="flex items-center font-semibold divide-x divide-gray-300 text-tan-700">
+      <li><%= link_to 'All Categories', categories_path, class: 'block pr-2 hover:text-tan-900 ' %>
       <% @categories.each do |category| %>
         <li>
-          <%= link_to category.name, category_products_path(category), class: "px-2 block #{params[:category_id] == category.slug ? 'text-red-500' : ''}"  %>
+          <%= link_to category.name, category_products_path(category), class: "px-2 block hover:text-tan-900 #{params[:category_id] == category.slug ? 'text-tan-900' : ''}"  %>
         </li>
       <% end %>
     </ul>
   </nav>
   <div class="flex items-center justify-between mb-12">
-    <h1 class="text-4xl font-bold"><%= @category.name %> Products</h1>
+    <h1 class="text-4xl font-bold text-tan-800"><%= @category.name %> Products</h1>
     <%= link_to 'New product', new_category_product_path(@category), class: button_class(theme: 'create', variant: 'small') %>
   </div>
 
   <div id="products" class="grid grid-cols-2 gap-6 lg:gap-12 lg:grid-cols-3">
     <% @products.each do |product| %>
-      <div class="relative bg-white shadow cursor-pointer rounded-2xl">
-        <div class="relative">
-          <div class="flex justify-center py-4 shadow-inner bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-300 rounded-t-2xl">
-            <img src="<%= product.product_image %>" alt="Product" loading="lazy" class="h-48">
-          </div>
-          <span class="absolute top-0 transform -translate-y-1/2 left-4 bg-gray-900 text-white py-0.5 px-1.5 rounded text-xs tracking-widest font-semibold">
-            <%= product.category.name %>
-          </span>
-        </div>
-        <div class="flex items-center justify-between p-4 space-x-2">
-          <p class="font-medium"><%= product.name %></p>
-          <% if (product.discontinued_on.to_date - Date.today.to_date).to_i < 10 %>
-            <p class="font-semibold text-red-500">Only <%= (product.discontinued_on.to_date - Date.today.to_date).to_i %> days left!</p>
-          <% end %>
-        </div>
-        <a href="<%= category_product_url(@category, product)%>" class="absolute inset-0 cursor-pointer" aria-label="View product"></a>
-      </div>
+      <%= render(ProductCardComponent.new(payload: {
+        image: product.product_image,
+        category: product.category.name,
+        name: product.name,
+        alert: (product.discontinued_on.to_date - Date.today.to_date).to_i < 10 ? "Only #{(product.discontinued_on.to_date - Date.today.to_date).to_i} days left!" : nil,
+        link: category_product_url(@category, product),
+        link_label: "View product"
+      })) %>
     <% end %>
   </div>
 </div>

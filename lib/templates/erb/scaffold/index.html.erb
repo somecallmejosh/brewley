@@ -11,7 +11,7 @@
       <%% end %>
     </div>
   </div>
-  <ul class="p-4 bg-white divide-y divide-gray-200 shadow-lg lg:p-12 lg:rounded-2xl">
+  <ul class="p-4 bg-white divide-y divide-gray-200 shadow-lg lg:p-12">
     <%% @<%= plural_table_name%>.each do |<%= singular_table_name %>| %>
     <%%= content_tag :div, id: dom_id(<%= singular_table_name %>), class: dom_class(<%= singular_table_name %>) do %>
     <li class="justify-between py-3 space-y-2 bg-white lg:flex lg:items-center lg:space-x-4 lg:space-y-0">
